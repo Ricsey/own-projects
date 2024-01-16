@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container col col-lg-3 bg-light">
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+			{{render_field(form.find_for, class='form-control')}}
+            {{form.submit(class="btn btn-dark mt-2")}}
+        </fieldset>
+    </form>
+</div>
+
+{% if founds %}
+    <div class="container">
+        <table class="table table-striped table-hover table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email address</th>
+                    <th scope="col">Phone number</th>   
+                </tr>
+            </thead>
+            <tbody>
+                    {% for contact in founds %}
+                    <tr>
+                        <th scope="row"> {{contact.id}} </th>
+                        <td> {{contact.name}} </td>
+                        <td> {{contact.email}} </td>
+                        <td> {{contact.phone_number}} </td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+
+{% macro render_valid_ok() %}
+    <td>
+        <h6>
+            <span class="badge bg-success text-white me-2">Valid OK</span>
+        </h6>
+    </td>
+{% endmacro %}
+
+{% macro render_error() %}
+    <td>
+        <h6>
+            <span class="badge bg-danger me-2">ERROR</span>
+        </h6>
+    </td>
+{% endmacro %}
+
+{% macro render_warning() %}
+    <td>
+        <h6>
+            <span class="badge bg-info me-2">WARNING</span>
+        </h6>
+    </td>
+{% endmacro %}
+
+{% macro render_fixed_bug_case() %}
+    <td>
+        <h6>
+            <span class="badge bg-secondary text-white me-2">FIXED BUG CASE</span>
+        </h6>
+    </td>
+{% endmacro %}
+
+{% macro render_check_cell(value, color) %}
+    <td>
+        {% if value %}
+        <i class="fa-solid fa-circle-check" style="color: {{ color }};"></i>
+        {% endif %}
+    </td>
+{% endmacro %}
+
+{% macro render(value) %}
+    {% if value ==  0 %}
+        <td>
+            <h6>
+                <span class="badge bg-success text-white me-2">Valid OK</span>
+            </h6>
+        </td>
+    {% elif value ==  1 %}
+        <td>
+            <h6>
+                <span class="badge bg-danger me-2">ERROR</span>
+            </h6>
+        </td>
+    {% elif value ==  2 %}
+        <td>
+            <h6>
+                <span class="badge bg-info me-2">WARNING</span>
+            </h6>
+        </td>     
+    {% elif value ==  3 %}
+        <td>
+            <h6>
+                <span class="badge bg-secondary text-white me-2">FIXED BUG CASE</span>
+            </h6>
+        </td>
+    {% endif %}
+{% endmacro %}
+
+{%block content%}
+
+
+<style>
+    /* custom styling for all icons */
+    .fa-solid,
+    .fa-brands, 
+    .fa-sharp-solid {
+      background-color: papayawhip;
+      border-radius: 0.2em;
+      padding: 0.3em;
+    }
+  
+    /* custom styling for specific icons */
+    .fa-house {
+      color: #4e73df;
+    }
+  
+    .fa-check{
+        color: #1cc88a;
+    }
+
+    .fa-triangle-exclamation {
+        color: #e74a3b;
+    }
+
+    .fa-exclamation {
+        color: #f6c23e;
+    }
+
+    .fa-stopwatch {
+        color: #36b9cc;
+    }
+
+    .fa-layer-group {
+        color: #4e73df;
+    }
+
+</style>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTarget" aria-expanded="false" aria-controls="collapseTarget">
+                Repository info
+              </button>
+        </div>
+        <div class="collapse" id="collapseTarget">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>bin</td>
+                        <td>95be5c5ddc32883ae35123754a0199045c0c3fd2</td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td>95be5c5ddc32883ae35123754a0199045c0c3fd2</td>
+                    </tr>
+                    <tr>
+                        <td>datassd</td>
+                        <td>95be5c5ddc32883ae35123754a0199045c0c3fd2</td>
+                    </tr>
+                    <tr>
+                        <td>src</td>
+                        <td>95be5c5ddc32883ae35123754a0199045c0c3fd2</td>
+                    </tr>
+                    <tr>
+                        <td>srcfortran</td>
+                        <td>95be5c5ddc32883ae35123754a0199045c0c3fd2</td>
+                    </tr>
+                    <tr>
+                        <td>test</td>
+                        <td>95be5c5ddc32883ae35123754a0199045c0c3fd2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-6 d-flex align-items-stretch">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5>Specification of runs</h5>
+                </div>
+                <div class="card-body">
+                    <p>22</p>
+                    <p>DEBUG</p>
+                    <p>SINNACH</p>
+                    <p>2022.11.04 19:32:40 - 2022.11.07 12:40:59</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-8 col-sm-6 d-flex align-items-stretch">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5>Extract of results </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- All case -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                All case</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">123</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-layer-group fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Success run -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Success run</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">34</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-check fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Perfect run -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Perfect run</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-check"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Error -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Error
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">70</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Warning -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Warning</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-sharp fa-solid fa-exclamation fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Stopper issue -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Stopper issue</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-stopwatch fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reported bug -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Reported bug</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-bug fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Fixed bug -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Fixed bug</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">40</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa-solid fa-bug-slash fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid mt-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Results
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple1" class="">
+                <thead>
+                    <tr>
+                        <th>Next work</th>
+                        <th>Test case</th>
+                        <th>Test file</th>
+                        <th>Result</th>
+                        <th>Info</th>
+                        <th>New result</th>
+                        <th>Valid</th>
+                        <th>Error</th>
+                        <th>Comparing error</th>
+                        <th>Stopper issue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in runs_table %}
+                    <tr>
+                        <td>{{ row.delegate }}</td>
+                        <td> <a href="{{ url_for('testcase') }}"> {{ row.test }} </a></td>
+                        <td>{{ row.file }}</td>
+                        {{ [render_valid_ok(), render_error(), render_warning(), render_fixed_bug_case()] | random }}
+                        <td>{{ row.info }}</td>
+                        {{ render_check_cell(row.new_result, "#f6c23e") }}
+                        {{ render_check_cell(row.valid, "#1cc88a") }}
+                        {{ render_check_cell(row.error, "#e74a3b") }}
+                        {{ render_check_cell(row.compare_error, "DeepPink") }}
+                        {{ render_check_cell(row.stopper_issue, "#36b9cc") }}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Error types
+        </div>
+        <div class="card-body" id="error_types">
+            <table id="child_table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Delegate</th>
+                        <th>Error type</th>
+                        <th>File list</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Delegate</th>
+                        <th>Error type</th>
+                        <th>File list</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{%endblock%}

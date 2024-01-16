@@ -1,0 +1,181 @@
+{% macro render_cell(value, color) %}
+    <!-- <td {% if value %} style="background-color: {{color}}" {% endif %}> {{value}} </td> -->
+     <td> <h5><span class="badge text-outline" {% if value %} style="background-color: {{color}}" {% endif %}>{{value}}</span></h5> </td>
+{% endmacro %}
+
+{% macro render_cell1(value, bgcolor, text_color) %}
+     <td> 
+        {% if value %}
+        <h6>
+            <span class="badge bg-{{bgcolor}} text-{{text_color}} me-2">{{value}}</span>
+        </h6>
+        {% else %}
+            {{value}}
+        {% endif %}
+     </td>
+{% endmacro %}
+
+
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Summary log</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header">
+            <i class="fa-solid fa-filter"></i>
+            Get results of specific runs
+        </div>
+        <div class="card-body">
+            <form class="form-group" action="">
+                <div class="d-flex justify-content-between">
+                    <div class="form-control">
+                        <label for="filterKnown" class="text-muted">Known</label>
+                        <select name="" id="filterKnown" class="form-select">
+                            <option value="1"> Validated </option>
+                            <option value="2"> Last </option>
+                        </select>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="filterMajorVersion">Major version</label>
+                        <select name="" id="filterMajorVersion" class="form-select">
+                            <option value="1"> 22 </option>
+                            <option value="2"> 21 </option>
+                            <option value="3"> 20 </option>
+                        </select>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="filterCompileType">Compile type</label>
+                        <select name="" id="filterCompileType" class="form-select">
+                            <option value="1"> DEBUG </option>
+                            <option value="2"> RELEASE </option>
+                            <option value="3"> INSTALL </option>
+                        </select>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="filterSystem">Compile type</label>
+                        <select name="" id="filterSystem" class="form-select">
+                            <option value="1"> SINNACH </option>
+                            <option value="2"> TESTERW10 </option>
+                            <option value="3"> AMDW11 </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <a href="#">
+                        <a href="#" class="btn btn-sm btn-outline-dark btn-light btn-icon-split">
+                            <span class="icon">
+                                <i class="fa-solid fa-filter"></i>
+                                <span class="text"> Filter </span>
+                            </span>
+                        </a>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header">
+            <i class="fa-solid fa-computer"></i>
+            Summary log
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Major version</th>
+                        <th>Compile type</th>
+                        <th>System</th>
+                        <th>All case</th>
+                        <th>Success</th>
+                        <th>Perfect</th>
+                        <th>Error</th>
+                        <th>Warning</th>
+                        <th>Stopper</th>
+                        <th>Reported</th>
+                        <th>Fixed</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Time</th>
+                        <th>Major version</th>
+                        <th>Compile type</th>
+                        <th>System</th>
+                        <th>All case</th>
+                        <th>Success</th>
+                        <th>Perfect</th>
+                        <th>Error</th>
+                        <th>Warning</th>
+                        <th>Stopper</th>
+                        <th>Reported</th>
+                        <th>Fixed</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                        {% for row in table %}
+                        <tr>
+                        <td data-type="date" data-format="YYYY-MM-DD HH:mm:ss">
+                            <a href="{{ url_for('sinnach') }}"> {{ row.date }} </a>
+                            
+                        </td>
+                        <td>{{ row.version }}</td>
+                        <td>{{ row.compile_type }}</td>
+                        <td>{{ row.system }}</td>
+
+
+                        {{render_cell1(row.all_case, "primary", "white")}}
+                        {{render_cell1(row.success, "success")}}
+                        {{render_cell1(row.perfect, "success")}}
+                        {{render_cell1(row.error, "danger")}}
+                        {{render_cell1(row.warning, "info")}}
+                        {{render_cell1(row.stopper, "gray-500", "body")}}
+                        {{render_cell1(row.reported, "warning")}}
+
+
+                        </tr>
+                        {%endfor%}
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function myFunction(col) {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      var input_id = "myInput";
+      var table_id = "datatablesSimple";
+      input = document.getElementById(input_id);
+      filter = input.value.toUpperCase();
+      table = document.getElementById(table_id);
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[col];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,1 @@
+This README provides an overview of the script, including its purpose, requirements, installation instructions, usage guidelines, code structure, sample output, and license information. Adjustments can be made according to your preferences or additional information you'd like to include.

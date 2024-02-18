@@ -34,7 +34,7 @@ def test_nums_working(app):
                 if str(i) not in result:
                     missing_elements.add(i)
             if missing_elements:
-                assert missing_elements, "These numbers are working!"
+                assert False, f"The following numbers are not working as expected: {', '.join(missing_elements)}"
 
 @allure.severity(severity_level=allure.severity_level.NORMAL)
 @allure.description("Checking + functionality")

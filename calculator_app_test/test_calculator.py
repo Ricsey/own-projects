@@ -1,15 +1,15 @@
 import pytest
+import allure
 from pywinauto import Desktop
 from subprocess import Popen
-import allure
-
+from calculator_page import CalculatorPage
 
 @pytest.fixture(scope="module")
-def app():
+def calculator_page():
     try:
         Popen("calc.exe")
         app = Desktop(backend="uia")["Számológép"]
-        yield app
+        yield CalculatorPage(app)
         app.close()
     except Exception as error:
         print(error)
@@ -19,16 +19,15 @@ def app():
 @allure.title("Checking all numbers working")
 @allure.severity(severity_level=allure.severity_level.CRITICAL)
 @allure.description("Input every value and check the output result")
-def test_nums_working(app):
+def test_nums_working(calculator_page):
     all_integers = (1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
     with allure.step("Input"):
         for i in all_integers:
-            app.child_window(auto_id=f"num{i}Button", control_type="Button").click()
-        app.child_window(auto_id="equalButton", control_type="Button").click()
+            calculator_page.input_number(i)
+        calculator_page.click_equal()
 
     with allure.step("Output"):
-        result_display_control = app.child_window(auto_id="CalculatorResults")
-        result = result_display_control.window_text().replace("Megjelenített érték: ", "")
+        result = calculator_page.get_result()
 
         if result != "1234567890":
             missing_elements = set()
@@ -42,16 +41,15 @@ def test_nums_working(app):
 @allure.title("Checking + functionality")
 @allure.severity(severity_level=allure.severity_level.NORMAL)
 @allure.description("Check if 1+2=3")
-def test_addition(app):
+def test_addition(calculator_page):
     with allure.step("Input"):
-        app.child_window(auto_id="num1Button", control_type="Button").click()
-        app.child_window(auto_id="plusButton", control_type="Button").click()
-        app.child_window(auto_id="num2Button", control_type="Button").click()
-        app.child_window(auto_id="equalButton", control_type="Button").click()
+        calculator_page.input_number(1)
+        calculator_page.input_operation("plus")
+        calculator_page.input_number(2)
+        calculator_page.click_equal()
 
     with allure.step("Output"):
-        result_display_control = app.child_window(auto_id="CalculatorResults")
-        result = result_display_control.window_text().replace("Megjelenített érték: ", "")
+        result = calculator_page.get_result()
 
         assert 3 == int(result), "Addition operation result is incorrect!"
 
@@ -59,16 +57,15 @@ def test_addition(app):
 @allure.title("Checking - functionality")
 @allure.severity(severity_level=allure.severity_level.NORMAL)
 @allure.description("Checking 4-3=1")
-def test_division(app):
+def test_division(calculator_page):
     with allure.step("Input"):
-        app.child_window(auto_id="num4Button", control_type="Button").click()
-        app.child_window(auto_id="minusButton", control_type="Button").click()
-        app.child_window(auto_id="num3Button", control_type="Button").click()
-        app.child_window(auto_id="equalButton", control_type="Button").click()
+        calculator_page.input_number(4)
+        calculator_page.input_operation("minus")
+        calculator_page.input_number(3)
+        calculator_page.click_equal()
 
     with allure.step("Output"):
-        result_display_control = app.child_window(auto_id="CalculatorResults")
-        result = result_display_control.window_text().replace("Megjelenített érték: ", "")
+        result = calculator_page.get_result()
         raise Exception("Cannot read result")
         assert 1 == int(result), "Substraction operation result is incorrect!"
 
@@ -76,16 +73,15 @@ def test_division(app):
 @allure.title("Checking zero division")
 @allure.severity(severity_level=allure.severity_level.CRITICAL)
 @allure.description("Check zero division functionality and output")
-def test_division_by_zero(app):
+def test_division_by_zero(calculator_page):
     with allure.step("Input"):
-        app.child_window(auto_id="num4Button", control_type="Button").click()
-        app.child_window(auto_id="divideButton", control_type="Button").click()
-        app.child_window(auto_id="num0Button", control_type="Button").click()
-        app.child_window(auto_id="equalButton", control_type="Button").click()
+        calculator_page.input_number(4)
+        calculator_page.input_operation("divide")
+        calculator_page.input_number(0)
+        calculator_page.click_equal()
 
     with allure.step("Output"):
-        result_display_control = app.child_window(auto_id="CalculatorResults")
-        result = result_display_control.window_text().replace("Megjelenített érték: ", "")
+        result = calculator_page.get_result()
 
         assert "Nullával lehet osztani" == result, "Division by zero error message is incorrect!"
 

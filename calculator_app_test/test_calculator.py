@@ -91,6 +91,7 @@ def test_division_by_zero(app):
 
 # TODO
 # szorzas
+# muveletek sorrendiseg ellenorzese
 # aritmetikai muveletek racionalis szamokkal (float)
 # negativ szamok ellenorzese:
 #   inputban mukodik-e

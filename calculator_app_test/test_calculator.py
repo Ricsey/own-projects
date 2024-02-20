@@ -69,7 +69,7 @@ def test_division(app):
     with allure.step("Output"):
         result_display_control = app.child_window(auto_id="CalculatorResults")
         result = result_display_control.window_text().replace("Megjelenített érték: ", "")
-
+        raise Exception("Cannot read result")
         assert 1 == int(result), "Substraction operation result is incorrect!"
 
 @allure.story("Calculator test")
@@ -87,7 +87,7 @@ def test_division_by_zero(app):
         result_display_control = app.child_window(auto_id="CalculatorResults")
         result = result_display_control.window_text().replace("Megjelenített érték: ", "")
 
-        assert "Nullával nem lehet osztani" == result, "Division by zero error message is incorrect!"
+        assert "Nullával lehet osztani" == result, "Division by zero error message is incorrect!"
 
 # TODO
 # szorzas

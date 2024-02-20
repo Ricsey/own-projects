@@ -15,8 +15,10 @@ def app():
         print(error)
         pytest.fail("Failed to start the application.")
 
+@allure.story("Calculator test")
+@allure.title("Checking all numbers working")
 @allure.severity(severity_level=allure.severity_level.CRITICAL)
-@allure.description("Checking all numbers working")
+@allure.description("Input every value and check the output result")
 def test_nums_working(app):
     all_integers = (1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
     with allure.step("Input"):
@@ -36,8 +38,10 @@ def test_nums_working(app):
             if missing_elements:
                 assert False, f"The following numbers are not working as expected: {', '.join(missing_elements)}"
 
+@allure.story("Calculator test")
+@allure.title("Checking + functionality")
 @allure.severity(severity_level=allure.severity_level.NORMAL)
-@allure.description("Checking + functionality")
+@allure.description("Check if 1+2=3")
 def test_addition(app):
     with allure.step("Input"):
         app.child_window(auto_id="num1Button", control_type="Button").click()
@@ -51,9 +55,10 @@ def test_addition(app):
 
         assert 3 == int(result), "Addition operation result is incorrect!"
 
-
+@allure.story("Calculator test")
+@allure.title("Checking - functionality")
 @allure.severity(severity_level=allure.severity_level.NORMAL)
-@allure.description("Checking - functionality")
+@allure.description("Checking 4-3=1")
 def test_division(app):
     with allure.step("Input"):
         app.child_window(auto_id="num4Button", control_type="Button").click()
@@ -67,9 +72,10 @@ def test_division(app):
 
         assert 1 == int(result), "Substraction operation result is incorrect!"
 
-
+@allure.story("Calculator test")
+@allure.title("Checking zero division")
 @allure.severity(severity_level=allure.severity_level.CRITICAL)
-@allure.description("Checking zero division")
+@allure.description("Check zero division functionality and output")
 def test_division_by_zero(app):
     with allure.step("Input"):
         app.child_window(auto_id="num4Button", control_type="Button").click()

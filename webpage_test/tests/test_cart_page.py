@@ -16,11 +16,11 @@ class TestCartPage:
     @allure.severity(allure.severity_level.CRITICAL)    
     def test_basket_page_title(self, cart_page: CartPage):
         with allure.step("Check cart page title"):
-            assert cart_page.get_page_title() == 'Minden nap gyereknap! | REGIO JÁTÉK Webáruház'
+            assert cart_page.get_page_title() == 'Minden nap gyereknap! | REGIO JÁTÉK Webáruház', "Cart page title is incorrect!"
 
     @allure.description("Verify subtotal price 1 product")
     @allure.story("*--.---")
     @allure.severity(allure.severity_level.CRITICAL)            
     def test_subtotal_price(self, cart_page: CartPage):
         with allure.step("Check subtotal price"):
-            assert cart_page.get_subtotal_price() == 3995
+            assert cart_page.get_subtotal_price() == 3995, "Subtotal price is incorrect!"

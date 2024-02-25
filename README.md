@@ -1,3 +1,3 @@
-# Gyakorló feladataim
+# My Practice Tasks
 
-Ez a repository gyakorló feladatimat tartalmazza.
+This repository contains my practice tasks.

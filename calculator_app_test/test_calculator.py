@@ -86,29 +86,29 @@ def test_division_by_zero(calculator_page):
         assert "Nullával lehet osztani" == result, "Division by zero error message is incorrect!"
 
 # TODO
-# szorzas
-# muveletek sorrendiseg ellenorzese
-# aritmetikai muveletek racionalis szamokkal (float)
-# negativ szamok ellenorzese:
-#   inputban mukodik-e
-#   negativ szamokkal muveletek (+,-,*,/,sqrt)
-# C, CE funkciok mukodese
-# Memoria funkciok:
+# multiplication
+# verify the order of operations
+# arithmetic operations with rational numbers (float)
+# checking negative numbers:
+#   does it work in input?
+#   operations with negative numbers (+, -, *, /, sqrt)
+# functioning of C, CE functions
+# Memory functions:
 #   M+
 #   M-
 #   MS
 #   MR
 #   MC
-# sqrt es ^2
-# 1/x funkcio
+# sqrt and ^2
+# 1/x function
 # %
-# backspace gomb
-# "Előzmények" ellenőrzése
-#   megjelennek-e az új eredmények
-#   rákattintva visszahozza-e az akkori műveletet
-#   egyik elemére jobb egér -> Törlésre törlődik-e
+# backspace button
+# check "History"
+#   do the new results appear?
+#   clicking on it brings back the operation?
+#   right-click on one of its elements -> does it delete when clicking "Delete"?
 
-# tesztesetek kibovitese billentyu nyomassal
+# expand test cases with keyboard button pressing
 
 
 if __name__ == "__main__":

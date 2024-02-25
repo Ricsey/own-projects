@@ -1,9 +1,9 @@
-# Windows számológép automatikus tesztelése
+# Automated Testing of Windows Calculator
 
-Ez a repository a Windows számológép alkalmazás tesztelését tartalmazza, különböző tesztesetek segítségével.
+This repository contains the testing of the Windows Calculator application using various test cases.
 
-## Alkalmazott könyvtárak
+## Used Libraries
 
-- **pytest**: Egy Python teszt keretrendszer.
-- **allure**: Egy nyílt forráskódú jelentési keretrendszer, amely lehetővé teszi a szép, részletes és könnyen olvasható tesztjelentések készítését.
-- **pywinauto**: Egy Python könyvtár az ablakokat kezelő alkalmazások automatizálásához és teszteléséhez a Windows operációs rendszeren.
+- **pytest**: A Python testing framework.
+- **allure**: An open-source reporting framework that allows for creating beautiful, detailed, and easily readable test reports.
+- **pywinauto**: A Python library for automating and testing applications that manipulate windows on the Windows operating system.
